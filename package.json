@@ -8,6 +8,9 @@
     "start": "node index.js",
     "test": "jest --watch"
   },
+  "jest": {
+    "testEnvironment": "node"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/BW-WeightLiftingJournal-1-20-1/Back-end.git"
