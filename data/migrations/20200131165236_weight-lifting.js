@@ -40,3 +40,4 @@ exports.down = function (knex) {
   .dropTableIfExists("users");
 };
 
+
