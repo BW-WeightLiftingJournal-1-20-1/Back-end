@@ -39,3 +39,4 @@ exports.down = function (knex) {
   .dropTableIfExists("exercises")
   .dropTableIfExists("users");
 };
+
