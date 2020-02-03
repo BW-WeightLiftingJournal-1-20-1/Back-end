@@ -4,8 +4,14 @@ module.exports = {
   getAll,
   update,
   remove,
-  findById
+  findById,
+  get
 };
+
+function get() {
+  return db("exercises")
+  .orderBy("user_id");
+}
 
 function getAll() {
   return db("exercises")

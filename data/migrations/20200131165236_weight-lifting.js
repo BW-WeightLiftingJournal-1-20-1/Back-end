@@ -9,7 +9,8 @@ exports.up = function (knex) {
       .notNullable();
   })
     .createTable("exercises", tbl => {
-      tbl.increments();
+      tbl.increments()
+        .unique()
       tbl.integer("user_id")
         .unsigned()
         .notNullable()
