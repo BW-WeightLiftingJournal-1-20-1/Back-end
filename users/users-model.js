@@ -5,6 +5,7 @@ module.exports = {
   add,
   findBy,
   findById,
+  addExercise
 }
 
 function getAll() {
@@ -16,6 +17,14 @@ function getAll() {
 function add(newUser) {
   return db("users")
     .insert(newUser, "id")
+    .then(ids => {
+      return findById(ids[0])
+    })
+};
+
+function addExercise(newExercise) {
+  return db("exercises")
+    .insert(newExercise, "id")
     .then(ids => {
       return findById(ids[0])
     })

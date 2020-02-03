@@ -15,5 +15,20 @@ router.get("/", restricted, (req, res) => {
     })
 });
 
+//POST new exercise
+router.post("/:id/exercises", restricted, (req, res) => {
+  let newExercise = req.body;
+  newExercise.user_id = req.params.id
+  console.log(newExercise);
+  Users.addExercise(newExercise)
+    .then(item => {
+      res.status(201).json(item);
+    })
+    .catch(err => {
+      res.status(500).json({ message: "Error posting exercise" });
+      console.log(err);
+    });
+});
+
 
 module.exports = router;
