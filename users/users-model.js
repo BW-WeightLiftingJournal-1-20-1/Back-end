@@ -6,7 +6,7 @@ module.exports = {
   findBy,
   findById,
   addExercise,
-  get
+  userExercises
 };
 
 function getAll() {
@@ -15,22 +15,19 @@ function getAll() {
     .orderBy("id");
 }
 
-function get(id) {
+function userExercises(id) {
   return db("exercises")
-    .join("users", "exercises.user_id", "user_id")
-    .select(
-      "exercises.id",
-      "exercises.sets",
-      "exercises.reps",
-      "exercises.body_region",
-      "exercises.weight",
-      "exercises.date",
-      "exercises.journal",
-      "exercises.name",
-      "exercises.user_id"
-    )
+    .join("users", "exercises.user_id", "user.id")
+    .select("exercises.id", "exercises.date", "exercises.name", "exercises.body_region", "exercises.weight", "exercises.reps", "exercises.sets", "exercises.journal", "exercises.user_id")
     .where("exercises.user_id", id);
-}
+};
+
+// function getExercises(id) {
+//   return db("exercises")
+//     .join("users", "exercises.user_id", "user.id")
+//     .select("exercises.id", "exercises.sets", "exercises.reps", "exercises.body_region", "exercises.weight", "exercises.date", "exercises.journal", "exercises.name", "exercises.user_id")
+//     .where("exercises.user_id", id);
+// }
 
 function add(newUser) {
   return db("users")
