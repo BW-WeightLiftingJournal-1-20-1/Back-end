@@ -15,7 +15,7 @@ router.get("/", (req, res) => {
 });
 
 // GET exercies by ID
-router.get("/:id", (req, res) => {
+router.get("/:id", restricted, (req, res) => {
   const id = req.params.id;
   Exercises.getById(id)
     .then(exercises => {
@@ -28,7 +28,7 @@ router.get("/:id", (req, res) => {
 });
 
 // UPDATE exercises by ID
-router.put("/:id", (req, res) => {
+router.put("/:id", restricted, (req, res) => {
   const { id } = req.params;
   const changes = req.body;
   Exercises.findById(id)
@@ -49,7 +49,7 @@ router.put("/:id", (req, res) => {
 });
 
 // DELETE exercises by ID
-router.delete("/:id", (req, res) => {
+router.delete("/:id", restricted, (req, res) => {
   const { id } = req.params;
 
   Exercises.remove(id)
