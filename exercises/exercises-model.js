@@ -6,7 +6,8 @@ module.exports = {
   update,
   remove,
   findById,
-  getById
+  getById,
+  addExercise
 };
 
 function userExercises(id) {
@@ -43,4 +44,12 @@ function findById(id) {
   return db("exercises")
   .where({id})
   .first()
+}
+
+function addExercise(newExercise) {
+  return db("exercises")
+    .insert(newExercise)
+    .then(ids => {
+      return findById(ids[0]);
+    });
 }
